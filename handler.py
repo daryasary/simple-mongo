@@ -10,7 +10,12 @@ class BaseMongoHandler:
     def get_collections_list(self):
         return self.db.collection_names()
 
-    def save_list(self, collection, data, force=True):
+    def save_single_object(self, collection, data):
+        intended = self.get_intended_scope(collection)
+        inserted = intended.insert_one(data)
+        return bson2dict(intended.find_one({'_id': inserted.inserted_id}))
+
+    def save_objects_list(self, collection, data, force=True):
         intended = self.get_intended_scope(collection)
 
         try:
