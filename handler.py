@@ -1,3 +1,6 @@
+from utils import bson2dict
+
+
 class BaseMongoHandler:
 	"""Base mongo transaction handler, all actions will be implemented here"""
 
@@ -22,7 +25,13 @@ class BaseMongoHandler:
             result = intended.find(*query).sort(sort).limit(limit)
 
         return result, result.count()
-        
+
+    def get_single_object(self, collection, query={}):
+        intended = self.get_intended_scope(collection)
+        if isinstance(query, dict):
+            query = [query]
+        return bson2dict(intended.find_one(*query))
+
     def save_single_object(self, collection, data):
         intended = self.get_intended_scope(collection)
         inserted = intended.insert_one(data)

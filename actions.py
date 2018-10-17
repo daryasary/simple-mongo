@@ -29,3 +29,9 @@ def search(collection, query={}, sort=None, limit=0):
 	db = BaseMongoHandler()
 	result = db.get_objects_list(collection, query, sort, limit)
 	return result
+
+
+def fetch(collection, query={}):
+	db = BaseMongoHandler()
+	result = db.get_single_object(collection, query)
+	return result
