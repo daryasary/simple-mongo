@@ -34,3 +34,11 @@ class BaseMongoHandler:
 	                    # This dict is previously saved so continue for loop
 	                    ids.append(str(intended.find_one(d)['_id']))
         return ids
+
+    def update_objects_list(self, collection, query, data):
+        intended = self.get_intended_scope(collection)
+        updated = intended.update_many(query, data)
+        return {
+            "matched_count": updated.matched_count,
+            "modified_count": updated.modified_count
+        }
