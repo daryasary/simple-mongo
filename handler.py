@@ -42,3 +42,8 @@ class BaseMongoHandler:
             "matched_count": updated.matched_count,
             "modified_count": updated.modified_count
         }
+
+    def delete_single_object(self, collection, query):
+        data = self.get_object(collection, query)
+        intended = self.get_intended_scope(collection)
+        return intended.delete_one(query)

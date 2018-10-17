@@ -17,3 +17,9 @@ def bulk_update(collection, query, data):
 	db = BaseMongoHandler()
 	saved_object = db.update_objects_list(collection, query, data)
 	return save_object
+
+
+def delete_object(collection, query):
+	db = BaseMongoHandler()
+	delete_result = db.delete_single_object()
+	return delete_result
