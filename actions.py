@@ -23,3 +23,9 @@ def delete_object(collection, query):
 	db = BaseMongoHandler()
 	delete_result = db.delete_single_object()
 	return delete_result
+
+
+def search(collection, query={}, sort=None, limit=0):
+	db = BaseMongoHandler()
+	result = db.get_objects_list(collection, query, sort, limit)
+	return result

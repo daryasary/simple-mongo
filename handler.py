@@ -10,6 +10,19 @@ class BaseMongoHandler:
     def get_collections_list(self):
         return self.db.collection_names()
 
+    def get_objects_list(self, collection, query={}, sort=None, limit=0):
+        intended = self.get_intended_scope(collection)
+        if isinstance(query, dict):
+            query = [query]
+
+        if sort is None:
+            result = intended.find(*query).limit(limit)
+
+        else:
+            result = intended.find(*query).sort(sort).limit(limit)
+
+        return result, result.count()
+        
     def save_single_object(self, collection, data):
         intended = self.get_intended_scope(collection)
         inserted = intended.insert_one(data)
