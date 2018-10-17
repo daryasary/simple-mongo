@@ -1,0 +1,5 @@
+MONGO_HOST = '<Mongodb host> default:localhost'
+MONGO_PORT = '<Mongodb port> default:27017'
+MONGO_DB = '<Mongodb database name>'
+MONGO_USER = '<Mongodb username> can be None'
+MONGO_PASS = '<Mongodb password> can be None'
