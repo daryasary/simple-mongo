@@ -5,3 +5,8 @@ Main idea is to make initalize and read/write process of Mongo easier for python
 
 # Docs
 Will be available soon
+
+# Todo
+  * Make it installable packe by `pip`
+  * Add `unittests`
+  * Create documents
